@@ -1,10 +1,10 @@
 package org.example;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
-
         System.out.println(convertDecimalToBinary(13));
     }
 
@@ -24,6 +24,31 @@ public class Main {
 
         return true;
     }
+
+    public static boolean checkForPalindromeWithStack(String text) {
+        String cleanedStr = text.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        Stack<Character> stack = new Stack<>();
+        int length = cleanedStr.length();
+
+
+        for (int i = 0; i < length / 2; i++) {
+            stack.push(cleanedStr.charAt(i));
+        }
+
+
+        int start = (length % 2 == 0) ? length / 2 : length / 2 + 1;
+
+
+        for (int i = start; i < length; i++) {
+            if (stack.pop() != cleanedStr.charAt(i)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     public static String convertDecimalToBinary(int decimal) {
         LinkedList<Integer> binaryList = new LinkedList<>();
